@@ -1,0 +1,69 @@
+/* PromptSite Custom Stylesheet Override */
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(31, 41, 55, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Custom Selection Highlight */
+::selection {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030712; /* Tailwind Slate 950 */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937; /* Tailwind Slate 800 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #374151; /* Tailwind Slate 700 */
+}
+
+/* Glowing text shadows */
+.text-glow-indigo {
+  text-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+
+.text-glow-emerald {
+  text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+/* Accent borders */
+.border-gradient-brand {
+  border-image: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4) 1;
+}
