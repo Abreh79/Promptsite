@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptSite | Spin Up Beautiful Websites on Demand</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1', // primary indigo
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b',
+            },
+            accent: {
+              emerald: '#10b981',
+              violet: '#8b5cf6',
+              cyan: '#06b6d4',
+            }
+          },
+          boxShadow: {
+            'glow-indigo': '0 0 20px -3px rgba(99, 102, 241, 0.5)',
+            'glow-emerald': '0 0 20px -3px rgba(16, 185, 129, 0.5)',
+            'glow-violet': '0 0 20px -3px rgba(139, 92, 246, 0.5)',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #030712; /* Tailwind Slate 950 */
+    }
+    
+    .gradient-text-indigo {
+      background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 50%, #4338ca 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .gradient-text-rainbow {
+      background: linear-gradient(135deg, #818cf8 0%, #a78bfa 35%, #06b6d4 70%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .terminal-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .terminal-scrollbar::-webkit-scrollbar-track {
+      background: #111827;
+    }
+    .terminal-scrollbar::-webkit-scrollbar-thumb {
+      background: #374151;
+      border-radius: 2px;
+    }
+    
+    /* Blinking terminal cursor */
+    .cursor-blink::after {
+      content: '▋';
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    
+    /* Smooth transition for elements */
+    .transition-all-300 {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  </style>
+</head>
+<body class="text-slate-100 antialiased overflow-x-hidden selection:bg-brand-500 selection:text-white">
+
+  <!-- Glow effects in background -->
+  <div class="absolute top-0 left-1/4 -translate-x-1/2 w-96 h-96 bg-brand-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute top-[800px] right-1/4 translate-x-1/2 w-[450px] h-[450px] bg-accent-violet/10 rounded-full blur-[140px] pointer-events-none"></div>
+  <div class="absolute top-[2000px] left-1/3 -translate-x-1/2 w-80 h-80 bg-accent-cyan/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <!-- Header / Navbar -->
+  <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
+      <div class="flex items-center gap-x-3">
+        <a href="#" class="flex items-center gap-2">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-brand-600 to-accent-violet text-white shadow-glow-indigo">
+            <span class="font-mono text-xl font-bold">&gt;_</span>
+          </div>
+          <span class="text-2xl font-extrabold tracking-tight text-white">Prompt<span class="text-brand-400">Site</span></span>
+        </a>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-x-8 text-sm font-semibold text-slate-300">
+        <a href="#how-it-works" class="hover:text-brand-400 transition-colors">How It Works</a>
+        <a href="#pricing" class="hover:text-brand-400 transition-colors">Pricing</a>
+        <a href="#portfolio" class="hover:text-brand-400 transition-colors">Portfolio</a>
+        <a href="#playground" class="hover:text-brand-400 transition-colors">AI Playground</a>
+      </nav>
+
+      <div class="flex items-center gap-x-4">
+        <a href="#contact" class="hidden sm:inline-flex items-center justify-center rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-bold text-white shadow-md hover:bg-brand-500 hover:shadow-glow-indigo transition-all duration-200">
+          Get Started <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-slate-950 px-4 py-6 space-y-4">
+      <a href="#how-it-works" class="block text-base font-semibold text-slate-300 hover:text-brand-400 transition-colors">How It Works</a>
+      <a href="#pricing" class="block text-base font-semibold text-slate-300 hover:text-brand-400 transition-colors">Pricing</a>
+      <a href="#portfolio" class="block text-base font-semibold text-slate-300 hover:text-brand-400 transition-colors">Portfolio</a>
+      <a href="#playground" class="block text-base font-semibold text-slate-300 hover:text-brand-400 transition-colors">AI Playground</a>
+      <a href="#contact" class="block w-full text-center rounded-xl bg-brand-600 py-3 text-base font-bold text-white shadow-md hover:bg-brand-500 transition-all duration-200">
+        Get Started <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative mx-auto max-w-7xl px-4 pt-16 pb-24 sm:px-6 lg:px-8 lg:pt-24">
+    <div class="grid grid-cols-1 gap-y-16 lg:grid-cols-12 lg:gap-x-12 items-center">
+      
+      <!-- Hero Details -->
+      <div class="lg:col-span-6 space-y-8 text-center lg:text-left">
+        <div class="inline-flex items-center gap-x-2 rounded-full border border-slate-700 bg-slate-900/60 px-4 py-1.5 text-xs font-semibold text-brand-300">
+          <span class="flex h-2.5 w-2.5 rounded-full bg-accent-emerald animate-pulse"></span>
+          Revolutionizing Web Development with AI
+        </div>
+        
+        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl leading-tight">
+          Spin up any website on demand. <br>
+          <span class="gradient-text-rainbow font-black">In plain English.</span>
+        </h1>
+        
+        <p class="text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0">
+          Describe what you need or paste a competitor's link. Our AI-driven engine and elite developer squad build, polish, and deploy your production-ready custom site. High fidelity, lightning-fast, zero friction.
+        </p>
+
+        <!-- Prompt Simulator Input Card -->
+        <div id="playground" class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 shadow-xl focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-500 transition-all max-w-xl mx-auto lg:mx-0">
+          <label for="hero-prompt" class="block text-left text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Describe your dream website:</label>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <textarea id="hero-prompt" class="flex-grow bg-slate-950/80 text-sm text-slate-100 rounded-xl p-3 border border-slate-800 focus:outline-none resize-none h-20 placeholder:text-slate-600 font-mono" placeholder="e.g., A gourmet coffee shop website with a custom order menu, smooth animations, and a table booking form."></textarea>
+            <button id="btn-generate" class="sm:self-end h-12 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand-600 to-accent-violet px-5 font-bold text-white shadow-md hover:opacity-90 hover:shadow-glow-indigo transition-all duration-200 whitespace-nowrap">
+              Generate ⚡
+            </button>
+          </div>
+          <!-- Presets -->
+          <div class="flex flex-wrap items-center gap-2 mt-4 text-xs">
+            <span class="text-slate-500">Or try a preset:</span>
+            <button class="preset-btn px-2.5 py-1 rounded-md border border-slate-800 hover:border-brand-500 bg-slate-950/40 text-slate-400 hover:text-white transition-all" data-prompt="A stunning showcase portfolio for a premium wedding photographer featuring smooth parallax sections and a booking form.">📸 Photographer</button>
+            <button class="preset-btn px-2.5 py-1 rounded-md border border-slate-800 hover:border-brand-500 bg-slate-950/40 text-slate-400 hover:text-white transition-all" data-prompt="A coffee shop website with a warm rustic layout, elegant interactive menu, and live address map integration.">☕ Coffee Shop</button>
+            <button class="preset-btn px-2.5 py-1 rounded-md border border-slate-800 hover:border-brand-500 bg-slate-950/40 text-slate-400 hover:text-white transition-all" data-prompt="A dark-themed modern SaaS dashboard landing page with interactive mock analytics and responsive onboarding flow.">📈 SaaS Landing</button>
+          </div>
+        </div>
+
+        <!-- Trust Stats -->
+        <div class="grid grid-cols-3 gap-4 pt-4 max-w-md mx-auto lg:mx-0 border-t border-slate-800/80">
+          <div>
+            <div class="text-2xl font-extrabold text-white">24-48h</div>
+            <div class="text-xs text-slate-500">Average Delivery</div>
+          </div>
+          <div>
+            <div class="text-2xl font-extrabold text-white">0-Code</div>
+            <div class="text-xs text-slate-500">Required From You</div>
+          </div>
+          <div>
+            <div class="text-2xl font-extrabold text-white">4.9/5 ★</div>
+            <div class="text-xs text-slate-500">Client Rating</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Hero Interactive Simulation Window -->
+      <div class="lg:col-span-6 relative">
+        <!-- Decoration background glow -->
+        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-brand-500 via-accent-violet to-accent-cyan opacity-30 blur-xl pointer-events-none"></div>
+        
+        <!-- IDE Window Container -->
+        <div class="relative bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col h-[480px]">
+          <!-- Windows Controls Bar -->
+          <div class="flex items-center justify-between px-4 py-3 bg-slate-950/80 border-b border-slate-800">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
+            </div>
+            <!-- Tab selector -->
+            <div class="flex bg-slate-900 border border-slate-800 rounded-lg p-0.5 text-xs font-semibold">
+              <button id="tab-terminal" class="px-3 py-1 rounded-md bg-slate-800 text-white transition-all">
+                <i class="fa-solid fa-terminal mr-1.5"></i> Terminal
+              </button>
+              <button id="tab-preview" class="px-3 py-1 rounded-md text-slate-400 hover:text-white transition-all" disabled>
+                <i class="fa-solid fa-display mr-1.5"></i> Live Preview
+              </button>
+            </div>
+            <!-- Address Mock -->
+            <div id="mock-address" class="hidden text-[10px] font-mono text-slate-500 bg-slate-950 px-3 py-1 rounded-md border border-slate-850 truncate max-w-[120px] sm:max-w-[200px]">
+              localhost:3000
+            </div>
+          </div>
+          
+          <!-- Terminal Tab Content -->
+          <div id="terminal-content" class="flex-grow p-5 font-mono text-sm overflow-y-auto text-emerald-400 terminal-scrollbar space-y-3 bg-slate-950">
+            <div class="text-slate-500">// Welcome to PromptSite Interactive Engine</div>
+            <div class="text-slate-400">engine@promptsite:~$ <span class="text-slate-300">await promptsite.initialize()</span></div>
+            <div class="text-slate-500">Initializing cognitive compilers... [OK]</div>
+            <div class="text-slate-500">Loading component templates library... [OK]</div>
+            <div class="text-slate-500">Standing by for user request...</div>
+            <div id="terminal-cursor-line" class="text-slate-200 cursor-blink">engine@promptsite:~$ </div>
+          </div>
+          
+          <!-- Live Preview Tab Content -->
+          <div id="preview-content" class="hidden flex-grow bg-slate-950 relative overflow-hidden flex flex-col">
+            <!-- Mock browser window -->
+            <div class="flex-grow flex flex-col h-full overflow-y-auto overflow-x-hidden text-slate-900 bg-white">
+              <!-- Inside Mock Content (Dynamically Injected) -->
+              <div id="iframe-simulator" class="w-full h-full">
+                <!-- Fallback/Default Mock Website Content -->
+                <div class="p-6 text-center text-slate-400 mt-24">
+                  <i class="fa-solid fa-wand-magic-sparkles text-4xl text-brand-500 animate-bounce mb-4"></i>
+                  <p class="text-slate-300 font-bold">Please click "Generate" or use one of the presets to build a real-time site preview!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="border-t border-slate-900 bg-slate-950/40 py-24 relative">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400">Process</h2>
+        <p class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          From Prompt to Production in 3 Simple Steps
+        </p>
+        <p class="text-base text-slate-400">
+          We combine cutting-edge AI blueprinting with premium software engineering to deliver robust, custom, production-grade applications that make an impact.
+        </p>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 gap-12 md:grid-cols-3 relative">
+        <!-- Connecting Line for larger screens -->
+        <div class="hidden md:block absolute top-1/4 left-[15%] right-[15%] h-[2px] bg-gradient-to-r from-brand-500 via-accent-violet to-accent-emerald z-0 opacity-20"></div>
+
+        <!-- Step 1 -->
+        <div class="relative bg-slate-900/60 border border-slate-800 rounded-2xl p-8 shadow-xl hover:border-brand-500/50 transition-all z-10 group">
+          <div class="absolute -top-6 left-8 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-brand-600 to-brand-500 text-white font-extrabold text-lg shadow-glow-indigo">
+            1
+          </div>
+          <h3 class="mt-4 text-xl font-bold text-white group-hover:text-brand-300 transition-colors">Describe Your Concept</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">
+            Write down your design, goals, and required pages, or paste a link to a competitor's website that you love. Use our AI playground to sketch out early features.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative bg-slate-900/60 border border-slate-800 rounded-2xl p-8 shadow-xl hover:border-accent-violet/50 transition-all z-10 group">
+          <div class="absolute -top-6 left-8 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-accent-violet to-purple-500 text-white font-extrabold text-lg shadow-glow-violet">
+            2
+          </div>
+          <h3 class="mt-4 text-xl font-bold text-white group-hover:text-accent-violet transition-colors">Instant Spec & Mockup</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">
+            We generate a complete system specification sheet detailing the site architecture, interactive features, pricing tier recommendation, and a beautiful interactive sandbox blueprint.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative bg-slate-900/60 border border-slate-800 rounded-2xl p-8 shadow-xl hover:border-accent-emerald/50 transition-all z-10 group">
+          <div class="absolute -top-6 left-8 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-accent-emerald to-teal-500 text-white font-extrabold text-lg shadow-glow-emerald">
+            3
+          </div>
+          <h3 class="mt-4 text-xl font-bold text-white group-hover:text-accent-emerald transition-colors">Elite Build & Launch</h3>
+          <p class="mt-3 text-slate-400 text-sm leading-relaxed">
+            Our specialized engineers wire up databases, configure Stripe e-commerce, build bespoke AI chatbots or voice agents, run a strict QA testing check, and publish to lightning-fast global servers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-24 relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400">Pricing Tiers</h2>
+        <p class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          Transparent, Value-Packed Pricing
+        </p>
+        <p class="text-base text-slate-400">
+          Choose a plan that fits your business stage. No surprise developer fees, no bloated overhead. Fully custom builds.
+        </p>
+        
+        <!-- Interactive Support Switch -->
+        <div class="inline-flex items-center gap-3 bg-slate-900 p-1 rounded-xl border border-slate-800 mt-4">
+          <button id="toggle-onetime" class="px-4 py-1.5 text-xs font-bold rounded-lg bg-brand-600 text-white transition-all">One-Time Build</button>
+          <button id="toggle-annual" class="px-4 py-1.5 text-xs font-bold rounded-lg text-slate-400 hover:text-white transition-all">With Monthly Hosting & Maintenance</button>
+        </div>
+      </div>
+
+      <!-- Pricing Cards Grid -->
+      <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3 items-stretch max-w-6xl mx-auto">
+        
+        <!-- Tier 1: Basic -->
+        <div class="flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl p-8 shadow-xl hover:border-slate-700 transition-all-300 relative">
+          <div>
+            <div class="text-xs font-bold text-brand-400 uppercase tracking-widest mb-1">Tier 1</div>
+            <h3 class="text-2xl font-extrabold text-white mb-4">Basic</h3>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6 h-12">Stunning high-conversion landing pages, digital business cards, or creative portfolios.</p>
+            <div class="flex items-baseline mb-6">
+              <span class="text-5xl font-black text-white">$499</span>
+              <span class="text-xs text-slate-500 ml-2 font-semibold">one-time build fee</span>
+            </div>
+          </div>
+          
+          <ul class="space-y-4 text-sm text-slate-300 mb-8 flex-grow">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> 1 Fully Custom Responsive Page</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Sleek Modern Animation/Effects</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Custom Responsive Contact Form</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Social Media & Map Integrations</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Global CDN Setup (1st Month Free)</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Delivery in 24 - 48 Hours</li>
+          </ul>
+          
+          <a href="#contact" onclick="selectPricingTier('Basic')" class="w-full text-center py-3 px-4 rounded-xl bg-slate-800 text-slate-200 font-bold hover:bg-slate-700 hover:text-white transition-all-300 border border-slate-700/50 mt-auto">
+            Select Basic
+          </a>
+        </div>
+
+        <!-- Tier 2: Standard (Highlighted) -->
+        <div class="flex flex-col bg-slate-900 border-2 border-brand-500 rounded-2xl p-8 shadow-glow-indigo relative transform md:-translate-y-2 transition-all duration-300">
+          <div class="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500 px-4 py-1 text-xs font-bold text-white uppercase tracking-wider shadow-lg">
+            Most Popular
+          </div>
+          <div>
+            <div class="text-xs font-bold text-brand-400 uppercase tracking-widest mb-1">Tier 2</div>
+            <h3 class="text-2xl font-extrabold text-white mb-4">Standard</h3>
+            <p class="text-sm text-slate-300 leading-relaxed mb-6 h-12">Multi-page business sites, editorial blogs, high-performance booking channels, or full e-commerce stores.</p>
+            <div class="flex items-baseline mb-6">
+              <span class="text-5xl font-black text-white">$1,499</span>
+              <span class="text-xs text-slate-400 ml-2 font-semibold">one-time build fee</span>
+            </div>
+          </div>
+          
+          <ul class="space-y-4 text-sm text-slate-200 mb-8 flex-grow">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Up to 5 Premium Pages Included</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Complete E-Commerce Store & Checkout</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Booking/Appointment Schedulers</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Custom Blog Engine & Dynamic CMS</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Interactive Custom Dashboard/UI</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Advanced Analytics Integration</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-brand-400 text-xs"></i> Delivery in 3 - 5 Days</li>
+          </ul>
+          
+          <a href="#contact" onclick="selectPricingTier('Standard')" class="w-full text-center py-3 px-4 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-violet text-white font-bold hover:opacity-95 shadow-md hover:shadow-glow-indigo transition-all-300 mt-auto">
+            Select Standard
+          </a>
+        </div>
+
+        <!-- Tier 3: Premium -->
+        <div class="flex flex-col bg-slate-900/60 border border-slate-800 rounded-2xl p-8 shadow-xl hover:border-slate-700 transition-all-300 relative">
+          <div>
+            <div class="text-xs font-bold text-accent-violet uppercase tracking-widest mb-1">Tier 3</div>
+            <h3 class="text-2xl font-extrabold text-white mb-4">Premium</h3>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6 h-12">Bespoke applications integrated with state-of-the-art LLM voice agents, smart chatbots, or custom user database portals.</p>
+            <div class="flex items-baseline mb-6">
+              <span class="text-5xl font-black text-white">$4,999</span>
+              <span class="text-xs text-slate-500 ml-2 font-semibold">one-time build fee</span>
+            </div>
+          </div>
+          
+          <ul class="space-y-4 text-sm text-slate-300 mb-8 flex-grow">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-accent-violet text-xs"></i> Unlimited Custom Pages & Database</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-accent-violet text-xs"></i> Custom Conversational AI Chatbots</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-accent-violet text-xs"></i> Intelligent Scheduling & Voice Schedulers</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-accent-violet text-xs"></i> Member Portals & User Accounts</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-accent-violet text-xs"></i> Heavy Integrations (SaaS Core Platforms)</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-accent-violet text-xs"></i> Full Tech Consultant Support</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-accent-violet text-xs"></i> Delivery in 1 - 2 Weeks</li>
+          </ul>
+          
+          <a href="#contact" onclick="selectPricingTier('Premium')" class="w-full text-center py-3 px-4 rounded-xl bg-slate-800 text-slate-200 font-bold hover:bg-slate-700 hover:text-white transition-all-300 border border-slate-700/50 mt-auto">
+            Select Premium
+          </a>
+        </div>
+
+      </div>
+      
+      <!-- Subscription note under cards -->
+      <div id="pricing-subscription-note" class="hidden mt-8 text-center text-sm text-slate-400 bg-slate-900/40 py-3 px-6 rounded-xl border border-slate-800 max-w-2xl mx-auto">
+        <i class="fa-solid fa-circle-info text-brand-400 mr-2"></i> Custom Hosting & Support starts at just <span class="text-white font-bold">$49/mo</span> (Basic) or <span class="text-white font-bold">$149/mo</span> (Standard/Premium) which includes unlimited small edits, high-speed security hosting, and AI agent API token upkeep.
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="bg-slate-950/40 py-24 relative border-t border-slate-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400">Our Portfolio</h2>
+        <p class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          Engineered to Perfection
+        </p>
+        <p class="text-base text-slate-400">
+          Take a look at what we are capable of delivering. Interactive, blazing fast, and designed with conversion optimization in mind.
+        </p>
+      </div>
+
+      <!-- Portfolio Filter Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mt-10">
+        <button class="portfolio-filter px-4 py-2 rounded-xl text-sm font-bold bg-brand-600 text-white transition-all" data-filter="all">All</button>
+        <button class="portfolio-filter px-4 py-2 rounded-xl text-sm font-bold bg-slate-900 text-slate-400 hover:text-white transition-all border border-slate-800" data-filter="landing">Landing Pages</button>
+        <button class="portfolio-filter px-4 py-2 rounded-xl text-sm font-bold bg-slate-900 text-slate-400 hover:text-white transition-all border border-slate-800" data-filter="ecommerce">E-Commerce</button>
+        <button class="portfolio-filter px-4 py-2 rounded-xl text-sm font-bold bg-slate-900 text-slate-400 hover:text-white transition-all border border-slate-800" data-filter="ai">AI Integrations</button>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        
+        <!-- Case 1 -->
+        <div class="portfolio-item bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:border-slate-700 transition-all duration-300 flex flex-col group" data-category="landing">
+          <div class="relative aspect-video bg-gradient-to-br from-indigo-950 to-slate-900 overflow-hidden flex items-center justify-center">
+            <div class="text-center p-6 space-y-3">
+              <span class="inline-block px-2.5 py-0.5 rounded bg-brand-500/10 text-brand-400 text-[10px] font-bold uppercase tracking-widest">Aesthetic Photography</span>
+              <h4 class="text-xl font-extrabold text-white">Aether Capture</h4>
+              <p class="text-xs text-slate-400">Minimalist portfolio layout with beautiful custom parallax image carousels.</p>
+            </div>
+            <!-- Interactive Hover Cover -->
+            <div class="absolute inset-0 bg-slate-950/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <button onclick="simulateAether()" class="px-4 py-2 bg-brand-600 text-white text-xs font-bold rounded-xl shadow-glow-indigo hover:bg-brand-500">
+                View Playground Demo <i class="fa-solid fa-play ml-1.5 text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Aether Portfolio</h3>
+              <p class="text-xs text-slate-400">Custom wedding/lifestyle photographer portfolio with zero bloated CMS. Blazing fast (100/100 Lighthouse score).</p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-500">
+              <span>Tier 1 — Basic</span>
+              <span>Lighthouse Score: 100/100</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="portfolio-item bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:border-slate-700 transition-all duration-300 flex flex-col group" data-category="ecommerce">
+          <div class="relative aspect-video bg-gradient-to-br from-amber-950 to-amber-900/80 overflow-hidden flex items-center justify-center">
+            <div class="text-center p-6 space-y-3">
+              <span class="inline-block px-2.5 py-0.5 rounded bg-amber-500/10 text-amber-400 text-[10px] font-bold uppercase tracking-widest">Gourmet Food & Drink</span>
+              <h4 class="text-xl font-extrabold text-white">Bean & Brew</h4>
+              <p class="text-xs text-amber-200/60">Warm editorial coffee showcase with Stripe checkout and booking integration.</p>
+            </div>
+            <!-- Interactive Hover Cover -->
+            <div class="absolute inset-0 bg-slate-950/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <button onclick="simulateCoffee()" class="px-4 py-2 bg-brand-600 text-white text-xs font-bold rounded-xl shadow-glow-indigo hover:bg-brand-500">
+                View Playground Demo <i class="fa-solid fa-play ml-1.5 text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Bean & Brew Commerce</h3>
+              <p class="text-xs text-slate-400">Coffee shop storefront with online order processing, custom menu cards, dynamic table booking panel.</p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-500">
+              <span>Tier 2 — Standard</span>
+              <span>Payments: Stripe Verified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case 3 -->
+        <div class="portfolio-item bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden shadow-lg hover:border-slate-700 transition-all duration-300 flex flex-col group" data-category="ai">
+          <div class="relative aspect-video bg-gradient-to-br from-purple-950 to-cyan-950 overflow-hidden flex items-center justify-center">
+            <div class="text-center p-6 space-y-3">
+              <span class="inline-block px-2.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 text-[10px] font-bold uppercase tracking-widest">AI Platform</span>
+              <h4 class="text-xl font-extrabold text-white">CareBot Health Portal</h4>
+              <p class="text-xs text-cyan-200/60">Sleek medical app integrated with a custom diagnostic booking AI chatbot.</p>
+            </div>
+            <!-- Interactive Hover Cover -->
+            <div class="absolute inset-0 bg-slate-950/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <button onclick="simulateCarebot()" class="px-4 py-2 bg-brand-600 text-white text-xs font-bold rounded-xl shadow-glow-indigo hover:bg-brand-500">
+                View Playground Demo <i class="fa-solid fa-play ml-1.5 text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">CareBot Portal</h3>
+              <p class="text-xs text-slate-400">A cutting edge healthcare web dashboard featuring live doctor calendar booking, custom user accounts, AI consultation agent.</p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-500">
+              <span>Tier 3 — Premium</span>
+              <span>Bespoke LLM Integrations</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section / Dynamic Quote Form -->
+  <section id="contact" class="py-24 relative overflow-hidden border-t border-slate-900">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400">Get a Custom Quote</h2>
+        <p class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          Build Your Dream Website Today
+        </p>
+        <p class="text-base text-slate-400">
+          Submit your project requirements, and our team will get back to you within 12 hours with a comprehensive technical specification blueprint.
+        </p>
+      </div>
+
+      <!-- Contact Card Container -->
+      <div class="bg-slate-900 border border-slate-850 rounded-2xl p-6 sm:p-10 shadow-2xl relative">
+        <form id="contact-form" class="space-y-6">
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <!-- Name -->
+            <div>
+              <label for="form-name" class="block text-sm font-semibold text-slate-300">Your Name <span class="text-brand-400">*</span></label>
+              <input type="text" id="form-name" required class="mt-2 block w-full rounded-xl bg-slate-950 border border-slate-800 px-4 py-3 text-sm text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none placeholder:text-slate-600" placeholder="Jane Doe">
+            </div>
+            <!-- Email -->
+            <div>
+              <label for="form-email" class="block text-sm font-semibold text-slate-300">Your Email <span class="text-brand-400">*</span></label>
+              <input type="email" id="form-email" required class="mt-2 block w-full rounded-xl bg-slate-950 border border-slate-800 px-4 py-3 text-sm text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none placeholder:text-slate-600" placeholder="jane@example.com">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <!-- Reference Link -->
+            <div>
+              <label for="form-url" class="block text-sm font-semibold text-slate-300">Reference URL <span class="text-xs text-slate-500">(Optional)</span></label>
+              <input type="url" id="form-url" class="mt-2 block w-full rounded-xl bg-slate-950 border border-slate-800 px-4 py-3 text-sm text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none placeholder:text-slate-600" placeholder="https://competitor.com">
+            </div>
+            <!-- Selected Tier -->
+            <div>
+              <label for="form-tier" class="block text-sm font-semibold text-slate-300">Selected Tier <span class="text-brand-400">*</span></label>
+              <select id="form-tier" class="mt-2 block w-full rounded-xl bg-slate-950 border border-slate-800 px-4 py-3 text-sm text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none">
+                <option value="Basic">Tier 1 — Basic ($499+)</option>
+                <option value="Standard" selected>Tier 2 — Standard ($1,499+)</option>
+                <option value="Premium">Tier 3 — Premium ($4,999+)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div>
+            <label for="form-description" class="block text-sm font-semibold text-slate-300">Project Description <span class="text-brand-400">*</span></label>
+            <textarea id="form-description" required rows="4" class="mt-2 block w-full rounded-xl bg-slate-950 border border-slate-800 px-4 py-3 text-sm text-slate-100 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 focus:outline-none placeholder:text-slate-600" placeholder="Tell us about your brand, what the website needs to do, and any specific animations or designs you envision..."></textarea>
+          </div>
+
+          <!-- Integrations Required -->
+          <div>
+            <span class="block text-sm font-semibold text-slate-300 mb-3">Integrations / Advanced Features Needed:</span>
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+              <label class="flex items-center gap-2 text-xs text-slate-400 hover:text-white cursor-pointer select-none">
+                <input type="checkbox" name="integration" value="ecommerce" class="rounded border-slate-800 text-brand-500 focus:ring-brand-500 bg-slate-950">
+                <span>🛒 E-Commerce & Stripe</span>
+              </label>
+              <label class="flex items-center gap-2 text-xs text-slate-400 hover:text-white cursor-pointer select-none">
+                <input type="checkbox" name="integration" value="booking" class="rounded border-slate-800 text-brand-500 focus:ring-brand-500 bg-slate-950">
+                <span>📅 Booking Calendars</span>
+              </label>
+              <label class="flex items-center gap-2 text-xs text-slate-400 hover:text-white cursor-pointer select-none">
+                <input type="checkbox" name="integration" value="chatbot" class="rounded border-slate-800 text-brand-500 focus:ring-brand-500 bg-slate-950">
+                <span>🤖 Smart AI Chatbot</span>
+              </label>
+              <label class="flex items-center gap-2 text-xs text-slate-400 hover:text-white cursor-pointer select-none">
+                <input type="checkbox" name="integration" value="voice" class="rounded border-slate-800 text-brand-500 focus:ring-brand-500 bg-slate-950">
+                <span>🗣️ AI Voice Schedulers</span>
+              </label>
+              <label class="flex items-center gap-2 text-xs text-slate-400 hover:text-white cursor-pointer select-none">
+                <input type="checkbox" name="integration" value="portals" class="rounded border-slate-800 text-brand-500 focus:ring-brand-500 bg-slate-950">
+                <span>🔑 Secure Client Portals</span>
+              </label>
+              <label class="flex items-center gap-2 text-xs text-slate-400 hover:text-white cursor-pointer select-none">
+                <input type="checkbox" name="integration" value="database" class="rounded border-slate-800 text-brand-500 focus:ring-brand-500 bg-slate-950">
+                <span>💾 Custom Databases</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button id="submit-form-btn" type="submit" class="w-full h-14 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand-600 to-accent-violet font-bold text-white shadow-md hover:opacity-95 hover:shadow-glow-indigo transition-all duration-200">
+            Submit Project Brief <i class="fa-solid fa-paper-plane ml-2"></i>
+          </button>
+        </form>
+        
+        <!-- Submission Status Modal (Injected via JS) -->
+        <div id="form-success-modal" class="hidden absolute inset-0 bg-slate-900 rounded-2xl flex flex-col items-center justify-center p-8 text-center space-y-4">
+          <div class="flex h-16 w-16 items-center justify-center rounded-full bg-accent-emerald/10 text-accent-emerald text-3xl shadow-glow-emerald">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <h4 class="text-2xl font-extrabold text-white">Project Spec Received!</h4>
+          <p class="text-sm text-slate-300 max-w-md">
+            Your inquiry was successfully registered. Check <code class="bg-slate-950 px-1.5 py-0.5 rounded text-xs text-brand-400">inquiries.json</code> on our server to view it written in real time!
+          </p>
+          <p class="text-xs text-slate-500">Our engineers are already mapping out your system architecture blueprint.</p>
+          <button onclick="resetContactForm()" class="px-5 py-2.5 bg-slate-800 text-slate-300 font-bold text-xs rounded-xl hover:bg-slate-700 transition-colors">
+            Submit Another Brief
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 bg-slate-950/80 py-12 relative">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-2">
+        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-brand-600 to-accent-violet text-white">
+          <span class="font-mono text-sm font-bold">&gt;_</span>
+        </div>
+        <span class="text-lg font-bold tracking-tight text-white">PromptSite</span>
+      </div>
+      
+      <p class="text-xs text-slate-500 text-center sm:text-right">
+        &copy; 2026 PromptSite Inc. All rights reserved. Serviced via elite global engineers & state-of-the-art automation.
+      </p>
+    </div>
+  </footer>
+
+  <!-- FLOATING CONSULTATION AI CHATBOT WIDGET -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <!-- Chat Widget Panel -->
+    <div id="chatbot-panel" class="hidden w-[340px] sm:w-[380px] h-[500px] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden mb-4 transition-all-300 transform translate-y-4 opacity-0 scale-95">
+      <!-- Chat Head -->
+      <div class="bg-gradient-to-tr from-brand-600 to-accent-violet p-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-xl bg-slate-950/40 flex items-center justify-center text-white text-sm font-extrabold relative">
+            🤖
+            <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-accent-emerald ring-2 ring-slate-900"></span>
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-white">PromptBot</h4>
+            <span class="text-[10px] text-brand-200">AI Project Blueprinting Expert</span>
+          </div>
+        </div>
+        <button id="close-chat-btn" class="text-white/80 hover:text-white p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      
+      <!-- Chat Screen / History -->
+      <div id="chatbot-screen" class="flex-grow p-4 overflow-y-auto space-y-4 bg-slate-950 font-sans text-xs terminal-scrollbar">
+        <!-- Welcoming Message -->
+        <div class="flex gap-2 items-start max-w-[85%]">
+          <div class="h-6 w-6 rounded bg-brand-600/10 flex items-center justify-center text-[10px]">🤖</div>
+          <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-r-xl rounded-bl-xl text-slate-300 leading-relaxed">
+            Hi! I'm PromptBot, your AI Website Consultant. Describe the website you want to build, and I will recommend the perfect plan tier, spec out features, and pre-fill your contact card!
+          </div>
+        </div>
+      </div>
+      
+      <!-- Quick Options -->
+      <div class="px-3 py-2 bg-slate-900/60 border-t border-slate-850 flex flex-wrap gap-1.5">
+        <button class="quick-suggest-btn text-[10px] bg-slate-950 border border-slate-800 hover:border-brand-500 rounded-lg px-2 py-1 text-slate-400 hover:text-white transition-all">How much does it cost?</button>
+        <button class="quick-suggest-btn text-[10px] bg-slate-950 border border-slate-800 hover:border-brand-500 rounded-lg px-2 py-1 text-slate-400 hover:text-white transition-all">I need an e-commerce store</button>
+        <button class="quick-suggest-btn text-[10px] bg-slate-950 border border-slate-800 hover:border-brand-500 rounded-lg px-2 py-1 text-slate-400 hover:text-white transition-all">Custom AI Chatbot integration</button>
+      </div>
+
+      <!-- Chat Form Input -->
+      <form id="chatbot-form" class="p-3 bg-slate-900 border-t border-slate-850 flex gap-2">
+        <input id="chatbot-input" type="text" autocomplete="off" placeholder="Ask PromptBot something..." class="flex-grow rounded-lg bg-slate-950 border border-slate-800 px-3 py-2 text-xs text-slate-100 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500">
+        <button type="submit" class="p-2.5 bg-brand-600 hover:bg-brand-500 rounded-lg text-white text-xs transition-colors shadow-glow-indigo">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Toggle Chat Button -->
+    <button id="toggle-chat-btn" class="flex items-center justify-center h-14 w-14 rounded-full bg-gradient-to-tr from-brand-600 to-accent-violet text-white shadow-xl hover:opacity-95 shadow-glow-indigo transition-all duration-300 relative group animate-bounce">
+      <i class="fa-solid fa-comments text-xl group-hover:scale-110 transition-transform"></i>
+      <!-- Unread Badge -->
+      <span class="absolute top-0 right-0 block h-3 w-3 rounded-full bg-red-500 ring-2 ring-slate-950 animate-pulse"></span>
+    </button>
+  </div>
+
+  <!-- JavaScript file -->
+  <script src="/js/main.js"></script>
+</body>
+</html>
