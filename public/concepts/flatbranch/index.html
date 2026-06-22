@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flat Branch Pub & Brewing — Concept Pitch by PromptSite</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brick: {
+                            light: '#a24b4b',
+                            DEFAULT: '#8B3A3A', // Historic Brick Red
+                            dark: '#692a2a',
+                        },
+                        mustard: {
+                            light: '#e1bd6b',
+                            DEFAULT: '#D4A843', // Muted Mustard Gold
+                            dark: '#ae8123',
+                        },
+                        forest: {
+                            light: '#427c3c',
+                            DEFAULT: '#2D5A27', // Forest Green
+                            dark: '#1e3d1a',
+                        },
+                        pubdark: {
+                            bg: '#0a0a09', // Sleek ultra-dark background
+                            card: '#141412', // Sophisticated premium card bg
+                            border: '#23231f', // Dark border with warm tint
+                            muted: '#9a9a92', // Muted text with warm cast
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #141412;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2D5A27;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #D4A843;
+        }
+        
+        /* Smooth typing caret effect */
+        .typing::after {
+            content: '|';
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-pubdark-bg text-gray-100 font-sans selection:bg-brick selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT / PITCH BANNER -->
+    <div class="bg-gradient-to-r from-brick-dark via-pubdark-card to-forest-dark border-b border-pubdark-border py-2.5 px-4 text-center text-xs md:text-sm font-medium sticky top-0 z-50 backdrop-blur-md bg-opacity-95 shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+            <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-mustard text-pubdark-bg font-bold tracking-wider text-[10px] uppercase">
+                <i class="fa-solid fa-lightbulb"></i> Concept Pitch
+            </span>
+            <span class="text-gray-200">Interactive demo custom-built for <strong>Flat Branch Pub & Brewing</strong> by PromptSite.</span>
+            <a href="#pitch-pricing" class="text-mustard hover:text-mustard-light underline underline-offset-2 transition-colors font-semibold flex items-center gap-1">
+                View Concept Pricing <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="border-b border-pubdark-border/40 bg-pubdark-bg/85 backdrop-blur-md sticky top-[41px] z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <!-- Custom elegant logo -->
+                <div class="w-10 h-10 rounded bg-brick flex items-center justify-center text-mustard border border-pubdark-border shadow-inner">
+                    <i class="fa-solid fa-beer-mug-empty text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-serif font-bold text-lg leading-tight tracking-wide text-white">Flat Branch</h1>
+                    <p class="text-[10px] text-mustard uppercase tracking-widest font-bold">Pub & Brewing</p>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#the-brewery" class="hover:text-white transition-colors relative group py-1">
+                    The Brewery
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brick transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#menu-showcase" class="hover:text-white transition-colors relative group py-1">
+                    Menu Showcase
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brick transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#weekly-events" class="hover:text-white transition-colors relative group py-1">
+                    Weekly Events
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brick transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#brewbot-section" class="text-mustard hover:text-mustard-light transition-colors relative group py-1 flex items-center gap-1.5 font-semibold">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-mustard opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-mustard"></span>
+                    </span>
+                    Meet BrewBot AI
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="#brewbot-section" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded border border-forest text-forest-light hover:bg-forest hover:text-white transition-all duration-300">
+                    Book a Table
+                </a>
+                <a href="#claim-concept" class="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded bg-brick text-white hover:bg-brick-light transition-all duration-300 shadow-md shadow-brick/20">
+                    Claim This Site
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden border-b border-pubdark-border/60 py-20">
+        <!-- Ambient radial background -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,58,58,0.15)_0%,rgba(10,10,9,1)_70%)] z-0"></div>
+        
+        <!-- Atmospheric grid texture overlay -->
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:32px_32px] opacity-20 z-0"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center">
+            <!-- Legacy Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-pubdark-card border border-pubdark-border text-xs text-mustard font-semibold mb-8 animate-fade-in">
+                <span class="w-1.5 h-1.5 rounded-full bg-forest animate-pulse"></span>
+                Columbia's Original Brewpub — Celebrating 33 Years of Crafting Local Legacy
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl mx-auto leading-[1.1] mb-6">
+                Fresh <span class="text-mustard">Craft Beer</span>.<br class="sm:hidden"> 
+                Hearty Pub Fare.<br class="hidden lg:block">
+                A Columbia <span class="text-brick">Tradition</span>.
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-base sm:text-xl text-pubdark-muted max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+                Since 1994, Flat Branch Pub & Brewing has been crafting Columbia, MO's finest local ales and serving mouth-watering, flame-grilled pizzas & burgers in an warm, authentic historic building.
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+                <a href="#menu-showcase" class="w-full sm:w-auto px-8 py-4 rounded text-sm font-semibold tracking-wider uppercase bg-brick text-white hover:bg-brick-light transition-all duration-300 shadow-lg shadow-brick/20 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-utensils"></i> Explore the Menu
+                </a>
+                <a href="#brewbot-section" class="w-full sm:w-auto px-8 py-4 rounded text-sm font-semibold tracking-wider uppercase bg-pubdark-card border border-pubdark-border text-mustard hover:text-white hover:bg-pubdark-border transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-robot"></i> Book with BrewBot AI
+                </a>
+            </div>
+
+            <!-- Features Quick-Grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto mt-20 text-left">
+                <div class="p-5 rounded bg-pubdark-card/50 border border-pubdark-border/40 hover:border-pubdark-border transition-all duration-300 group">
+                    <div class="w-10 h-10 rounded-full bg-brick/10 flex items-center justify-center text-brick mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wheat-awn text-lg"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-base text-white mb-1">House-Brewed Beers</h3>
+                    <p class="text-xs text-pubdark-muted leading-relaxed">10+ award-winning craft beers on tap, brewed directly on premises in our custom copper brewhouse.</p>
+                </div>
+                
+                <div class="p-5 rounded bg-pubdark-card/50 border border-pubdark-border/40 hover:border-pubdark-border transition-all duration-300 group">
+                    <div class="w-10 h-10 rounded-full bg-mustard/10 flex items-center justify-center text-mustard mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-pizza-slice text-lg"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-base text-white mb-1">Hand-Tossed Pizzas</h3>
+                    <p class="text-xs text-pubdark-muted leading-relaxed">Artisanal, stone-baked pizzas with local toppings, house-made marinara, and perfectly crispy crusts.</p>
+                </div>
+
+                <div class="p-5 rounded bg-pubdark-card/50 border border-pubdark-border/40 hover:border-pubdark-border transition-all duration-300 group">
+                    <div class="w-10 h-10 rounded-full bg-forest/10 flex items-center justify-center text-forest-light mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-umbrella-beach text-lg"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-base text-white mb-1">The Great Patio</h3>
+                    <p class="text-xs text-pubdark-muted leading-relaxed">Unwind on Columbia's premier brick patio surrounded by mature trees, pub lights, and fresh air.</p>
+                </div>
+
+                <div class="p-5 rounded bg-pubdark-card/50 border border-pubdark-border/40 hover:border-pubdark-border transition-all duration-300 group">
+                    <div class="w-10 h-10 rounded-full bg-mustard/10 flex items-center justify-center text-mustard mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-brain text-lg"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-base text-white mb-1">AI Concierge Enabled</h3>
+                    <p class="text-xs text-pubdark-muted leading-relaxed">Let BrewBot AI handle peak-hour table bookings and menu questions in real-time on your site.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HISTORIC CORE PITCH / LEGACY INTRO -->
+    <section id="the-brewery" class="py-24 border-b border-pubdark-border/40 bg-pubdark-card/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Column -->
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="text-sm font-semibold text-brick uppercase tracking-widest block">Est. 1994</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight">
+                        33 Years of Local Craft, Re-imagined for the Digital Era
+                    </h2>
+                    <div class="h-1 w-20 bg-mustard rounded"></div>
+                    
+                    <p class="text-gray-300 leading-relaxed font-light">
+                        For over three decades, Columbia's beer enthusiasts have entered our historic brick walls for unmatched hospitality. We take pride in being Columbia’s first brewpub since prohibition.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed font-light">
+                        Today, premium pubs require a premium digital face. A slow, outdated website can hurt reservations, and staff can easily get bogged down on phones answering routine questions during rush hour. 
+                        <strong>PromptSite</strong> crafts high-converting, lightning-fast digital storefronts that couple local charm with state-of-the-art automation.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-forest mt-0.5"><i class="fa-solid fa-circle-check text-base"></i></span>
+                            <div>
+                                <h4 class="font-semibold text-white text-sm">Elegant Modern Architecture</h4>
+                                <p class="text-xs text-pubdark-muted">Optimized for rapid loading speeds and buttery-smooth mobile navigation.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="text-forest mt-0.5"><i class="fa-solid fa-circle-check text-base"></i></span>
+                            <div>
+                                <h4 class="font-semibold text-white text-sm">Automated Booking Concierge</h4>
+                                <p class="text-xs text-pubdark-muted">Allow tables to be booked effortlessly 24/7, reducing phone bottlenecks.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Mockup Column (Premium modern UI card concept) -->
+                <div class="lg:col-span-5">
+                    <div class="relative p-1 rounded-xl bg-gradient-to-tr from-pubdark-border via-pubdark-card to-brick/20 border border-pubdark-border/60 shadow-2xl overflow-hidden">
+                        <div class="bg-pubdark-bg p-6 sm:p-8 rounded-lg space-y-6">
+                            <div class="flex items-center justify-between border-b border-pubdark-border/40 pb-4">
+                                <span class="text-xs font-bold uppercase tracking-widest text-mustard">Site Health Stats</span>
+                                <span class="px-2 py-0.5 text-[10px] rounded bg-forest/15 text-forest-light font-semibold">PromptSite Build</span>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1.5 text-gray-300">
+                                        <span>Mobile Loading Speed</span>
+                                        <span class="text-forest-light font-semibold">0.4s (A+)</span>
+                                    </div>
+                                    <div class="w-full bg-pubdark-card rounded-full h-1.5 border border-pubdark-border">
+                                        <div class="bg-forest h-1.5 rounded-full" style="width: 98%"></div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1.5 text-gray-300">
+                                        <span>Google SEO Performance</span>
+                                        <span class="text-forest-light font-semibold">100 / 100</span>
+                                    </div>
+                                    <div class="w-full bg-pubdark-card rounded-full h-1.5 border border-pubdark-border">
+                                        <div class="bg-forest h-1.5 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs mb-1.5 text-gray-300">
+                                        <span>Conversion Rate Optimization</span>
+                                        <span class="text-mustard font-semibold">+340%</span>
+                                    </div>
+                                    <div class="w-full bg-pubdark-card rounded-full h-1.5 border border-pubdark-border">
+                                        <div class="bg-mustard h-1.5 rounded-full" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded bg-pubdark-card border border-pubdark-border/80 text-center space-y-2">
+                                <p class="text-xs text-gray-400">"This concept web architecture handles everything—from displaying live beers on tap to booking tables in 5 seconds."</p>
+                                <p class="text-[10px] text-mustard font-semibold uppercase tracking-wider">— PromptSite Engineering</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE MENU SHOWCASE -->
+    <section id="menu-showcase" class="py-24 border-b border-pubdark-border/40 bg-pubdark-bg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-sm font-semibold text-mustard uppercase tracking-widest block mb-2">Fresh & Local</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Sample Menu Showcase</h2>
+                <div class="h-1 w-16 bg-brick rounded mx-auto mt-4 mb-6"></div>
+                <p class="text-pubdark-muted text-sm font-light">
+                    An elegant, high-definition preview layout of your menu categories. A smooth, responsive layout lets customers scan your selections on their phone instantly.
+                </p>
+            </div>
+
+            <!-- Custom Category Tabs (Sleek dark-mode UI tabs, no blocky boxes) -->
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex p-1 rounded-full bg-pubdark-card border border-pubdark-border text-sm font-medium">
+                    <button onclick="switchMenuTab('beers')" id="tab-beers" class="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 bg-brick text-white">
+                        <i class="fa-solid fa-beer-mug-empty mr-1.5"></i> Craft Beers
+                    </button>
+                    <button onclick="switchMenuTab('fare')" id="tab-fare" class="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-pubdark-muted hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-burger mr-1.5"></i> Pub Favorites
+                    </button>
+                    <button onclick="switchMenuTab('pizzas')" id="tab-pizzas" class="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-pubdark-muted hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-pizza-slice mr-1.5"></i> Stone Pizzas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Beer Grid -->
+            <div id="grid-beers" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 transition-opacity duration-300">
+                <!-- Beer 1 -->
+                <div class="p-6 rounded-lg bg-pubdark-card border border-pubdark-border hover:border-brick/40 transition-all duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="inline-flex px-2 py-0.5 rounded bg-brick/10 border border-brick/20 text-brick text-[10px] uppercase font-bold tracking-wider">Legendary</span>
+                            <span class="text-mustard font-bold font-serif">$6.50</span>
+                        </div>
+                        <h3 class="font-serif text-lg font-bold text-white">Green Chili Beer</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">Our famous light blonde ale infused with fresh, hand-roasted green chilies. Crisp with a unique, smoky, and mildly warming finish.</p>
+                    </div>
+                    <div class="border-t border-pubdark-border/40 pt-4 mt-6 flex justify-between text-[11px] text-gray-400 font-medium">
+                        <span>ABV: 5.2%</span>
+                        <span>IBU: 18</span>
+                    </div>
+                </div>
+
+                <!-- Beer 2 -->
+                <div class="p-6 rounded-lg bg-pubdark-card border border-pubdark-border hover:border-brick/40 transition-all duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="inline-flex px-2 py-0.5 rounded bg-mustard/10 border border-mustard/20 text-mustard text-[10px] uppercase font-bold tracking-wider">Local Favorite</span>
+                            <span class="text-mustard font-bold font-serif">$6.00</span>
+                        </div>
+                        <h3 class="font-serif text-lg font-bold text-white">Honey Wheat</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">A beautifully crisp, highly refreshing American wheat ale sweetened lightly with 100% natural, locally sourced Missouri honey.</p>
+                    </div>
+                    <div class="border-t border-pubdark-border/40 pt-4 mt-6 flex justify-between text-[11px] text-gray-400 font-medium">
+                        <span>ABV: 4.8%</span>
+                        <span>IBU: 12</span>
+                    </div>
+                </div>
+
+                <!-- Beer 3 -->
+                <div class="p-6 rounded-lg bg-pubdark-card border border-pubdark-border hover:border-brick/40 transition-all duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="inline-flex px-2 py-0.5 rounded bg-pubdark-border text-gray-300 text-[10px] uppercase font-bold tracking-wider">Award Winner</span>
+                            <span class="text-mustard font-bold font-serif">$6.50</span>
+                        </div>
+                        <h3 class="font-serif text-lg font-bold text-white">Oatmeal Stout</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">Creamy, velvety, and full-bodied black ale featuring deep, rich roasted coffee aromas, roasted grains, and hints of dark cocoa.</p>
+                    </div>
+                    <div class="border-t border-pubdark-border/40 pt-4 mt-6 flex justify-between text-[11px] text-gray-400 font-medium">
+                        <span>ABV: 5.5%</span>
+                        <span>IBU: 28</span>
+                    </div>
+                </div>
+
+                <!-- Beer 4 -->
+                <div class="p-6 rounded-lg bg-pubdark-card border border-pubdark-border hover:border-brick/40 transition-all duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="inline-flex px-2 py-0.5 rounded bg-forest/10 border border-forest/20 text-forest-light text-[10px] uppercase font-bold tracking-wider">Crisp & Clean</span>
+                            <span class="text-mustard font-bold font-serif">$5.50</span>
+                        </div>
+                        <h3 class="font-serif text-lg font-bold text-white">Pub Light</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">An exceptionally clean, crisp, and pale golden American light lager. Smooth drinkability that complements any hearty pub meal.</p>
+                    </div>
+                    <div class="border-t border-pubdark-border/40 pt-4 mt-6 flex justify-between text-[11px] text-gray-400 font-medium">
+                        <span>ABV: 4.2%</span>
+                        <span>IBU: 10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food Grid (Hidden initially) -->
+            <div id="grid-fare" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden transition-opacity duration-300">
+                <!-- Food 1 -->
+                <div class="p-6 rounded-lg bg-pubdark-card border border-pubdark-border hover:border-brick/40 transition-all duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="inline-flex px-2 py-0.5 rounded bg-brick/10 border border-brick/20 text-brick text-[10px] uppercase font-bold tracking-wider">House Special</span>
+                            <span class="text-mustard font-bold font-serif">$15.50</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white">Flat Branch Burger</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">Half-pound custom chuck/brisket blend, slathered in our house-made Oatmeal Stout BBQ sauce, sharp cheddar cheese, and crispy buttermilk-battered onion straws on a toasted buttery brioche bun. Served with fries.</p>
+                    </div>
+                </div>
+
+                <!-- Food 2 -->
+                <div class="p-6 rounded-lg bg-pubdark-card border border-pubdark-border hover:border-brick/40 transition-all duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="inline-flex px-2 py-0.5 rounded bg-forest/10 border border-forest/20 text-forest-light text-[10px] uppercase font-bold tracking-wider">Local Classic</span>
+                            <span class="text-mustard font-bold font-serif">$16.50</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white">Honey Wheat Fish & Chips</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">Flaky Atlantic cod fillets hand-dipped in our signature Honey Wheat beer batter, fried golden-brown, served with thick house-cut fries, tangy pub coleslaw, and scratch-made lemon tartar sauce.</p>
+                    </div>
+                </div>
+
+                <!-- Food 3 -->
+                <div class="p-6 rounded-lg bg-pubdark-card border border-pubdark-border hover:border-brick/40 transition-all duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="inline-flex px-2 py-0.5 rounded bg-pubdark-border text-gray-300 text-[10px] uppercase font-bold tracking-wider">Perfect Share</span>
+                            <span class="text-mustard font-bold font-serif">$11.00</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white">Soft Pub Pretzel Sticks</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">Baked fresh, salted Bavarian-style pretzel sticks, served alongside rich, warm cheese dip crafted with our Pub Light lager, and a side of stone-ground spicy brown mustard.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizza Grid (Hidden initially) -->
+            <div id="grid-pizzas" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden transition-opacity duration-300">
+                <!-- Pizza 1 -->
+                <div class="p-6 rounded-lg bg-pubdark-card border border-pubdark-border hover:border-brick/40 transition-all duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="inline-flex px-2 py-0.5 rounded bg-brick/10 border border-brick/20 text-brick text-[10px] uppercase font-bold tracking-wider">Meat Lovers</span>
+                            <span class="text-mustard font-bold font-serif">$18.00</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white">The Brewer's Special</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">Artisanal hand-tossed dough topped with spicy pepperoni, sweet Italian sausage, smoked applewood bacon, sweet caramelized onions, premium whole-milk mozzarella, and our slow-simmered house marinara sauce.</p>
+                    </div>
+                </div>
+
+                <!-- Pizza 2 -->
+                <div class="p-6 rounded-lg bg-pubdark-card border border-pubdark-border hover:border-brick/40 transition-all duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="inline-flex px-2 py-0.5 rounded bg-mustard/10 border border-mustard/20 text-mustard text-[10px] uppercase font-bold tracking-wider">Missouri Twist</span>
+                            <span class="text-mustard font-bold font-serif">$17.50</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white">Green Chili Chicken Pizza</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">Tender flame-grilled chicken, fresh mild green chilies, dollops of rich cream cheese, melted whole-milk mozzarella, and a sprinkle of chopped fresh cilantro over a roasted garlic oil base.</p>
+                    </div>
+                </div>
+
+                <!-- Pizza 3 -->
+                <div class="p-6 rounded-lg bg-pubdark-card border border-pubdark-border hover:border-brick/40 transition-all duration-300 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-start">
+                            <span class="inline-flex px-2 py-0.5 rounded bg-forest/10 border border-forest/20 text-forest-light text-[10px] uppercase font-bold tracking-wider">Vegetarian</span>
+                            <span class="text-mustard font-bold font-serif">$15.50</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white">Four Cheese & Basil</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">A decadent blend of premium mozzarella, sharp provolone, creamy fontina, and freshly grated parmesan, drizzled with cold-pressed olive oil, fresh minced garlic, and hand-torn sweet basil leaves.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS SECTION -->
+    <section id="weekly-events" class="py-24 border-b border-pubdark-border/40 bg-pubdark-card/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-sm font-semibold text-forest-light uppercase tracking-widest block mb-2">Join the Crowd</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Weekly Brewpub Events</h2>
+                <div class="h-1 w-16 bg-mustard rounded mx-auto mt-4 mb-6"></div>
+                <p class="text-pubdark-muted text-sm font-light">
+                    Keep your patrons returning week after week with a clear, engaging schedule of happenings. This layout showcases how events update dynamically to inform Columbia locals.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Event 1 -->
+                <div class="rounded-xl bg-pubdark-card border border-pubdark-border/60 hover:border-mustard/30 transition-all duration-300 overflow-hidden group">
+                    <div class="h-4 bg-brick"></div>
+                    <div class="p-6 sm:p-8 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-mustard uppercase tracking-wider">Every Tuesday</span>
+                            <span class="px-2 py-0.5 rounded bg-brick/15 text-brick text-[10px] font-bold">7:00 PM</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white group-hover:text-mustard transition-colors">Trivia Night Tuesday</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">
+                            Pack the pub! Compete in 5 rounds of trivia ranging from local history to pop culture. Prizes for the top 3 teams, and enjoy special $14 pitchers of Pub Light all night long.
+                        </p>
+                        <div class="pt-4 border-t border-pubdark-border/40 flex items-center gap-2 text-xs text-gray-400">
+                            <i class="fa-solid fa-users text-mustard"></i>
+                            <span>Fills up fast. Booking recommended!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="rounded-xl bg-pubdark-card border border-pubdark-border/60 hover:border-forest/30 transition-all duration-300 overflow-hidden group">
+                    <div class="h-4 bg-forest"></div>
+                    <div class="p-6 sm:p-8 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-mustard uppercase tracking-wider">Every Thursday</span>
+                            <span class="px-2 py-0.5 rounded bg-forest/20 text-forest-light text-[10px] font-bold">6:00 - 9:00 PM</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white group-hover:text-forest-light transition-colors">Acoustic Patio Live</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">
+                            Soak up the gorgeous evening on Columbia’s favorite brick patio. Relax with live, soulful acoustic sessions from local mid-Missouri songwriters while enjoying fresh tank-to-table drafts.
+                        </p>
+                        <div class="pt-4 border-t border-pubdark-border/40 flex items-center gap-2 text-xs text-gray-400">
+                            <i class="fa-solid fa-cloud-sun text-forest-light"></i>
+                            <span>Weather permitting. Outdoor seating.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="rounded-xl bg-pubdark-card border border-pubdark-border/60 hover:border-brick/30 transition-all duration-300 overflow-hidden group">
+                    <div class="h-4 bg-mustard"></div>
+                    <div class="p-6 sm:p-8 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-mustard uppercase tracking-wider">Every Sunday</span>
+                            <span class="px-2 py-0.5 rounded bg-mustard/10 text-mustard text-[10px] font-bold">10:00 AM - 2:00 PM</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-white group-hover:text-mustard transition-colors">Brewer's Brunch</h3>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">
+                            Cure your weekend with our custom brunch menu, featuring Honey Wheat Belgian waffles, local sausage skillets, bottomless mimosas, and crisp $4.50 pints of Honey Wheat.
+                        </p>
+                        <div class="pt-4 border-t border-pubdark-border/40 flex items-center gap-2 text-xs text-gray-400">
+                            <i class="fa-solid fa-mug-hot text-mustard"></i>
+                            <span>Special brunch & breakfast menu.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURE: AI BOOKING AGENT & CONCIERGE -->
+    <section id="brewbot-section" class="py-24 border-b border-pubdark-border bg-pubdark-bg relative overflow-hidden">
+        <!-- Accent glowing bubbles for premium AI tech theme -->
+        <div class="absolute -right-48 top-1/4 w-96 h-96 bg-brick/10 rounded-full blur-3xl z-0 pointer-events-none"></div>
+        <div class="absolute -left-48 bottom-1/4 w-96 h-96 bg-forest/10 rounded-full blur-3xl z-0 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Info Panel -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-forest/15 text-forest-light text-xs font-bold border border-forest/25">
+                        <i class="fa-solid fa-robot animate-pulse"></i> PromptSite Premium Feature
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight">
+                        Meet BrewBot: Your <span class="text-mustard">AI Table Concierge</span>
+                    </h2>
+                    <div class="h-1 w-20 bg-brick rounded"></div>
+                    
+                    <p class="text-gray-300 leading-relaxed font-light text-sm">
+                        This is the **Premium Tier ($4,999) game-changer**. Instead of a basic static website, your brewpub gains an intelligent conversational agent designed to do the work of a full-time hostess.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed font-light text-sm">
+                        BrewBot lives right on your homepage, greeting patrons with warm, brand-aligned hospitality. It works 24/7 in real-time, helping clients:
+                    </p>
+                    
+                    <ul class="space-y-3.5 pt-2 text-sm text-gray-200">
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-brick/20 text-brick flex items-center justify-center text-xs flex-shrink-0">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </span>
+                            <span>Book reservations in 30 seconds with instant confirmations.</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-mustard/25 text-mustard flex items-center justify-center text-xs flex-shrink-0">
+                                <i class="fa-solid fa-beer-mug-empty"></i>
+                            </span>
+                            <span>Recommend local craft beers and food pairings based on taste.</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 rounded-full bg-forest/20 text-forest-light flex items-center justify-center text-xs flex-shrink-0">
+                                <i class="fa-solid fa-circle-question"></i>
+                            </span>
+                            <span>Answer FAQs about hours, parking, trivia nights, or dietary choices.</span>
+                        </li>
+                    </ul>
+
+                    <div class="p-4 rounded-lg bg-pubdark-card border border-pubdark-border/80 flex items-start gap-3">
+                        <span class="text-mustard text-lg mt-0.5"><i class="fa-solid fa-lightbulb"></i></span>
+                        <p class="text-xs text-pubdark-muted leading-relaxed">
+                            <strong>Interactive Demo:</strong> Test BrewBot's capabilities on the right panel! Click any of the quick-replies, or try booking a reservation to experience the dynamic flow.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Live Chat Panel (Sleek UI mockup with direct simulated action) -->
+                <div class="lg:col-span-7">
+                    <div class="w-full max-w-lg mx-auto rounded-xl bg-pubdark-card border border-pubdark-border shadow-2xl overflow-hidden flex flex-col h-[520px]">
+                        
+                        <!-- Chat Header -->
+                        <div class="px-5 py-4 bg-pubdark-card border-b border-pubdark-border flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="relative">
+                                    <div class="w-10 h-10 rounded-full bg-brick border border-pubdark-border flex items-center justify-center text-mustard text-lg font-bold shadow-inner">
+                                        <i class="fa-solid fa-robot"></i>
+                                    </div>
+                                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-forest rounded-full border-2 border-pubdark-card"></span>
+                                </div>
+                                <div>
+                                    <h4 class="font-serif font-bold text-sm text-white">BrewBot</h4>
+                                    <p class="text-[10px] text-forest-light font-semibold uppercase tracking-wider">Online — AI Pub Assistant</p>
+                                </div>
+                            </div>
+                            <span class="px-2.5 py-1 text-[10px] rounded bg-pubdark-border text-pubdark-muted font-bold tracking-wider uppercase">Interactive Simulator</span>
+                        </div>
+
+                        <!-- Chat Messages Container -->
+                        <div id="chat-messages" class="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar bg-pubdark-bg/40">
+                            <!-- Bot Message -->
+                            <div class="flex gap-3 max-w-[85%]">
+                                <div class="w-8 h-8 rounded-full bg-brick flex-shrink-0 flex items-center justify-center text-mustard text-xs">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div class="p-3.5 rounded-lg rounded-tl-none bg-pubdark-card border border-pubdark-border text-xs text-gray-200 leading-relaxed space-y-2">
+                                    <p>🍻 Welcome to Flat Branch Pub & Brewing!</p>
+                                    <p>I am <strong>BrewBot</strong>, your digital table concierge. I can book a table for you, recommend one of our legendary house-brewed beers, or tell you what’s happening at the pub!</p>
+                                    <p class="text-[11px] text-mustard font-medium">How can I assist you today?</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chat Quick Suggestions (Horizontal scroll) -->
+                        <div class="px-4 py-2 bg-pubdark-card/60 border-t border-pubdark-border flex items-center gap-2 overflow-x-auto whitespace-nowrap scrollbar-none text-xs custom-scrollbar">
+                            <button onclick="handleQuickReply('suggest_beer')" class="px-3 py-1.5 rounded-full border border-pubdark-border hover:border-mustard/60 hover:text-mustard text-gray-300 transition-all flex items-center gap-1.5">
+                                🍺 Suggest a Beer
+                            </button>
+                            <button onclick="handleQuickReply('veggie')" class="px-3 py-1.5 rounded-full border border-pubdark-border hover:border-forest-light/60 hover:text-forest-light text-gray-300 transition-all flex items-center gap-1.5">
+                                🍔 Vegetarian Options?
+                            </button>
+                            <button onclick="handleQuickReply('events')" class="px-3 py-1.5 rounded-full border border-pubdark-border hover:border-mustard/60 hover:text-mustard text-gray-300 transition-all flex items-center gap-1.5">
+                                📅 Trivia & Events
+                            </button>
+                            <button onclick="handleQuickReply('book')" class="px-3 py-1.5 rounded-full border border-pubdark-border hover:border-brick/60 hover:text-brick-light text-gray-300 transition-all flex items-center gap-1.5 bg-brick/10">
+                                📝 Reserve Table
+                            </button>
+                        </div>
+
+                        <!-- Chat Input Box -->
+                        <div class="p-4 bg-pubdark-card border-t border-pubdark-border flex gap-2">
+                            <input id="chat-input" type="text" placeholder="Type your message..." onkeypress="handleInputKeyPress(event)" class="flex-1 bg-pubdark-bg border border-pubdark-border rounded px-3 py-2.5 text-xs text-gray-200 focus:outline-none focus:border-mustard placeholder-pubdark-muted">
+                            <button onclick="sendChatMessage()" class="w-10 h-10 rounded bg-brick hover:bg-brick-light text-white flex items-center justify-center transition-colors flex-shrink-0">
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PITCH & PRICING PLANS SECTION -->
+    <section id="pitch-pricing" class="py-24 border-b border-pubdark-border/40 bg-pubdark-card/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-sm font-semibold text-brick uppercase tracking-widest block mb-2">Transparent Investing</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Choose Your Growth Plan</h2>
+                <div class="h-1 w-16 bg-mustard rounded mx-auto mt-4 mb-6"></div>
+                <p class="text-pubdark-muted text-sm font-light">
+                    Elevate Flat Branch from a legacy offline establishment into a modern local powerhouse. Here is how our premium tiers structure your expansion.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                
+                <!-- Plan 1: Standard Tier -->
+                <div class="rounded-2xl bg-pubdark-card border border-pubdark-border hover:border-pubdark-border/80 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl">
+                    <div class="p-8 sm:p-10 space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Tier 2 Plan</span>
+                            <span class="px-2.5 py-1 text-[10px] rounded bg-pubdark-border text-gray-300 font-bold tracking-wider uppercase">Standard Web</span>
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <h3 class="font-serif text-2xl font-bold text-white">Standard Concept</h3>
+                            <p class="text-xs text-pubdark-muted">Full-featured, responsive, beautiful storefront</p>
+                        </div>
+
+                        <div class="pt-4 border-t border-pubdark-border/40">
+                            <span class="font-serif text-4xl font-bold text-white">$1,499</span>
+                            <span class="text-xs text-pubdark-muted ml-1">one-time build fee</span>
+                        </div>
+
+                        <ul class="space-y-4 text-xs text-gray-300 pt-4">
+                            <li class="flex items-center gap-3">
+                                <span class="text-forest"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>High-performance, modern dark UI styling</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-forest"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>Complete, responsive menu & taproom showcase</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-forest"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>Weekly events, trivia, and brunch calendars</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-forest"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>Integration with third-party reservation links</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-pubdark-muted/50 line-through">
+                                <span><i class="fa-solid fa-circle-xmark"></i></span>
+                                <span>Conversational BrewBot AI table assistant</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="p-8 bg-pubdark-card/40 border-t border-pubdark-border/40">
+                        <button onclick="selectPitchTier('Standard')" class="w-full py-3.5 rounded text-xs font-semibold uppercase tracking-wider border border-pubdark-border hover:border-mustard hover:text-mustard text-white transition-all duration-300">
+                            Get Standard Web Setup
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Plan 2: Premium Tier (AI booking agent is key differentiator) -->
+                <div class="rounded-2xl bg-pubdark-card border-2 border-mustard hover:border-mustard/90 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-2xl relative">
+                    <!-- Featured Badge -->
+                    <span class="absolute top-4 right-4 px-3 py-1 rounded bg-mustard text-pubdark-bg font-bold text-[9px] uppercase tracking-wider shadow-md">
+                        Highly Recommended
+                    </span>
+                    
+                    <div class="p-8 sm:p-10 space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-mustard uppercase tracking-widest">Tier 3 Plan</span>
+                            <span class="px-2.5 py-1 text-[10px] rounded bg-mustard/10 text-mustard font-bold tracking-wider uppercase">AI Integrated</span>
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <h3 class="font-serif text-2xl font-bold text-white">Premium AI Concept</h3>
+                            <p class="text-xs text-mustard">Includes the Conversational AI Booking Agent</p>
+                        </div>
+
+                        <div class="pt-4 border-t border-pubdark-border/40">
+                            <span class="font-serif text-4xl font-bold text-white">$4,999</span>
+                            <span class="text-xs text-pubdark-muted ml-1">one-time build fee</span>
+                        </div>
+
+                        <ul class="space-y-4 text-xs text-gray-300 pt-4">
+                            <li class="flex items-center gap-3">
+                                <span class="text-forest"><i class="fa-solid fa-circle-check"></i></span>
+                                <span class="font-semibold text-white">Everything in Standard Web Tier</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-mustard"><i class="fa-solid fa-circle-check"></i></span>
+                                <span class="font-semibold text-white">Full BrewBot AI Assistant & Concierge integration</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-forest"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>Interactive table reservations logged directly to a dashboard</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-forest"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>Automatic email & SMS booking confirmation triggers</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-forest"><i class="fa-solid fa-circle-check"></i></span>
+                                <span>Real-time beer recommendations & food pairing consults</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="p-8 bg-pubdark-card/40 border-t border-pubdark-border/40">
+                        <button onclick="selectPitchTier('Premium')" class="w-full py-3.5 rounded text-xs font-semibold uppercase tracking-wider bg-mustard hover:bg-mustard-light text-pubdark-bg font-bold transition-all duration-300 shadow-lg shadow-mustard/10">
+                            Get Premium Setup with AI
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INQUIRY FORM / CLAIM CONCEPT -->
+    <section id="claim-concept" class="py-24 bg-pubdark-bg relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="rounded-2xl p-8 sm:p-12 bg-pubdark-card border border-pubdark-border shadow-2xl relative overflow-hidden">
+                <!-- Watermark logo bg -->
+                <div class="absolute -right-16 -bottom-16 text-pubdark-border/10 text-9xl select-none pointer-events-none">
+                    <i class="fa-solid fa-beer-mug-empty"></i>
+                </div>
+
+                <div class="text-center max-w-xl mx-auto mb-10 space-y-4">
+                    <span class="text-xs font-bold text-mustard uppercase tracking-widest block">Claim This Site</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white">Claim This Design Concept</h2>
+                    <p class="text-xs text-pubdark-muted leading-relaxed font-light">
+                        Are you an owner, operator, or stakeholder of **Flat Branch Pub & Brewing**? Or do you want a custom, high-converting AI-powered website for your own local restaurant, pub, or service business? 
+                        Submit the form below, and our engineering team will reach out with customized options!
+                    </p>
+                </div>
+
+                <form id="contact-form" onsubmit="submitInquiry(event)" class="space-y-6 relative z-10">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="form-name" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Your Name *</label>
+                            <input id="form-name" type="text" required placeholder="John Doe" class="w-full bg-pubdark-bg border border-pubdark-border rounded px-4 py-3 text-xs text-gray-200 focus:outline-none focus:border-mustard placeholder-pubdark-muted">
+                        </div>
+                        <div>
+                            <label for="form-email" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Email Address *</label>
+                            <input id="form-email" type="email" required placeholder="john@example.com" class="w-full bg-pubdark-bg border border-pubdark-border rounded px-4 py-3 text-xs text-gray-200 focus:outline-none focus:border-mustard placeholder-pubdark-muted">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="form-company" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Business Name</label>
+                            <input id="form-company" type="text" placeholder="Flat Branch Pub & Brewing" class="w-full bg-pubdark-bg border border-pubdark-border rounded px-4 py-3 text-xs text-gray-200 focus:outline-none focus:border-mustard placeholder-pubdark-muted">
+                        </div>
+                        <div>
+                            <label for="form-tier" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Concept Tier Selection</label>
+                            <select id="form-tier" class="w-full bg-pubdark-bg border border-pubdark-border rounded px-4 py-3 text-xs text-gray-200 focus:outline-none focus:border-mustard">
+                                <option value="Premium">Premium Plan (with AI Booking Agent) — $4,999</option>
+                                <option value="Standard">Standard Plan (Custom Storefront) — $1,499</option>
+                                <option value="Custom">Custom Scope Build</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="form-desc" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Tell Us About Your Goals *</label>
+                        <textarea id="form-desc" required rows="4" placeholder="Let us know if you own Flat Branch and want to claim/adjust this pitch, or if you'd like a similar custom build for your business..." class="w-full bg-pubdark-bg border border-pubdark-border rounded px-4 py-3 text-xs text-gray-200 focus:outline-none focus:border-mustard placeholder-pubdark-muted leading-relaxed"></textarea>
+                    </div>
+
+                    <!-- Display Feedback Message -->
+                    <div id="form-feedback" class="hidden p-4 rounded text-xs font-medium leading-relaxed"></div>
+
+                    <button type="submit" id="submit-btn" class="w-full py-4 rounded text-xs font-bold uppercase tracking-wider bg-brick hover:bg-brick-light text-white transition-all duration-300 shadow-lg shadow-brick/20 flex items-center justify-center gap-2">
+                        <span id="btn-text">Submit Request & Claim Concept</span>
+                        <i id="btn-icon" class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-pubdark-border/40 py-12 bg-pubdark-bg text-center text-xs text-pubdark-muted">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <div class="flex items-center justify-center gap-3">
+                <div class="w-8 h-8 rounded bg-pubdark-card flex items-center justify-center text-mustard border border-pubdark-border shadow-inner">
+                    <i class="fa-solid fa-beer-mug-empty"></i>
+                </div>
+                <span class="font-serif font-bold text-white tracking-wider">Flat Branch Pub & Brewing Concept</span>
+            </div>
+            
+            <p class="max-w-md mx-auto leading-relaxed">
+                This website is a custom-crafted high-fidelity design concept pitch created by <strong>PromptSite</strong>. All brand assets, menus, and names are owned by Flat Branch Pub & Brewing and are utilized here for pitch illustration purposes only.
+            </p>
+
+            <div class="flex items-center justify-center gap-6 pt-2">
+                <a href="/" class="hover:text-white transition-colors flex items-center gap-1.5 font-medium">
+                    <i class="fa-solid fa-home"></i> Back to PromptSite Main
+                </a>
+                <span>•</span>
+                <a href="/#pricing" class="hover:text-white transition-colors flex items-center gap-1.5 font-medium">
+                    <i class="fa-solid fa-tags"></i> PromptSite Pricing
+                </a>
+            </div>
+
+            <p class="pt-4 text-[10px] text-gray-600">
+                &copy; 2026 PromptSite. All rights reserved. Built with love in Columbia, MO.
+            </p>
+        </div>
+    </footer>
+
+    <!-- INJECT CUSTOM CODE ENGINE -->
+    <script src="js/main.js"></script>
+</body>
+</html>
